@@ -19,13 +19,13 @@ namespace MahjongGenertorTool
 
         private Dictionary<string, StringBuilder> charCombineSbWithEyeDic = new Dictionary<string, StringBuilder>();
 
-        private Dictionary<string, Dictionary<int, string>> orderCombineNumDic = new Dictionary<string, Dictionary<int, string>>();
+        private Dictionary<string, Dictionary<int, bool>> orderCombineNumDic = new Dictionary<string, Dictionary<int, bool>>();
 
-        private Dictionary<string, Dictionary<int, string>> charCombineNumDic = new Dictionary<string, Dictionary<int, string>>();
+        private Dictionary<string, Dictionary<int, bool>> charCombineNumDic = new Dictionary<string, Dictionary<int, bool>>();
 
-        private Dictionary<string, Dictionary<int, string>> orderCombineWithEyeNumDic = new Dictionary<string, Dictionary<int, string>>();
+        private Dictionary<string, Dictionary<int, bool>> orderCombineWithEyeNumDic = new Dictionary<string, Dictionary<int, bool>>();
 
-        private Dictionary<string, Dictionary<int, string>> charCombineWithEyeNumDic = new Dictionary<string, Dictionary<int, string>>();
+        private Dictionary<string, Dictionary<int, bool>> charCombineWithEyeNumDic = new Dictionary<string, Dictionary<int, bool>>();
 
         public enum ListType
         {
@@ -55,10 +55,10 @@ namespace MahjongGenertorTool
                 orderCombineSbWithEyeDic.Add("order_combine_eye_" + i, new StringBuilder());
                 charCombineSbWithEyeDic.Add("char_combine_eye_" + i, new StringBuilder());
 
-                orderCombineNumDic.Add("order_combine_" + i, new Dictionary<int, string>());
-                charCombineNumDic.Add("char_combine_" + i, new Dictionary<int, string>());
-                orderCombineWithEyeNumDic.Add("order_combine_eye_" + i, new Dictionary<int, string>());
-                charCombineWithEyeNumDic.Add("char_combine_eye_" + i, new Dictionary<int, string>());
+                orderCombineNumDic.Add("order_combine_" + i, new Dictionary<int, bool>());
+                charCombineNumDic.Add("char_combine_" + i, new Dictionary<int, bool>());
+                orderCombineWithEyeNumDic.Add("order_combine_eye_" + i, new Dictionary<int, bool>());
+                charCombineWithEyeNumDic.Add("char_combine_eye_" + i, new Dictionary<int, bool>());
             }
         }
 
@@ -93,39 +93,27 @@ namespace MahjongGenertorTool
         }
 
 
-        private void addHuNumToString(int huNum, string hunToBeStr, Dictionary<string, StringBuilder> sbDic, Dictionary<string, Dictionary<int, string>> numDic, string keyPre, int targetHunNum)
+        private void addHuNumToString(int huNum, string hunToBeStr, Dictionary<string, StringBuilder> sbDic, Dictionary<string, Dictionary<int, bool>> numDic, string keyPre, int targetHunNum)
         {
             if (targetHunNum == 0 && !numDic[keyPre + 0].ContainsKey(huNum))
             {
-                numDic[keyPre + targetHunNum].Add(huNum, huNum + "=" + hunToBeStr);
-            }
-            else if (targetHunNum == 0 && numDic[keyPre + 0].ContainsKey(huNum) && hunToBeStr != "")
-            {
-                string str = numDic[keyPre + targetHunNum][huNum] + ":" + hunToBeStr;
-                numDic[keyPre + targetHunNum][huNum] = str;
+                numDic[keyPre + targetHunNum].Add(huNum, true);
+                sbDic[keyPre + targetHunNum].Append(huNum + "\r\n");
             }
             else if (targetHunNum == 1
                 && !numDic[keyPre + 0].ContainsKey(huNum)
                 && !numDic[keyPre + 1].ContainsKey(huNum))
             {
-                numDic[keyPre + targetHunNum].Add(huNum, huNum + "=" + hunToBeStr);
-            } else if (targetHunNum == 1
-                && numDic[keyPre + 1].ContainsKey(huNum) && hunToBeStr != "")
-            {
-                string str = numDic[keyPre + targetHunNum][huNum] + ":" + hunToBeStr;
-                numDic[keyPre + targetHunNum][huNum] = str;
+                numDic[keyPre + targetHunNum].Add(huNum, true);
+                sbDic[keyPre + targetHunNum].Append(huNum + "\r\n");
             }
             else if (targetHunNum == 2
                 && !numDic[keyPre + 0].ContainsKey(huNum)
                 && !numDic[keyPre + 1].ContainsKey(huNum)
                 && !numDic[keyPre + 2].ContainsKey(huNum))
             {
-                numDic[keyPre + targetHunNum].Add(huNum, huNum + "=" + hunToBeStr);
-            } else if (targetHunNum == 2
-                && numDic[keyPre + 2].ContainsKey(huNum) && hunToBeStr != "")
-            {
-                string str = numDic[keyPre + targetHunNum][huNum] + ":" + hunToBeStr;
-                numDic[keyPre + targetHunNum][huNum] = str;
+                numDic[keyPre + targetHunNum].Add(huNum, true);
+                sbDic[keyPre + targetHunNum].Append(huNum + "\r\n");
             }
             else if (targetHunNum == 3
                 && !numDic[keyPre + 0].ContainsKey(huNum)
@@ -133,13 +121,8 @@ namespace MahjongGenertorTool
                 && !numDic[keyPre + 2].ContainsKey(huNum)
                 && !numDic[keyPre + 3].ContainsKey(huNum))
             {
-                numDic[keyPre + targetHunNum].Add(huNum, huNum + "=" + hunToBeStr);
-            }
-            else if (targetHunNum == 3
-              && numDic[keyPre + 3].ContainsKey(huNum) && hunToBeStr != "")
-            {
-                string str = numDic[keyPre + targetHunNum][huNum] + ":" + hunToBeStr;
-                numDic[keyPre + targetHunNum][huNum] = str;
+                numDic[keyPre + targetHunNum].Add(huNum, true);
+                sbDic[keyPre + targetHunNum].Append(huNum + "\r\n");
             }
             else if (targetHunNum == 4
                 && !numDic[keyPre + 0].ContainsKey(huNum)
@@ -148,13 +131,8 @@ namespace MahjongGenertorTool
                 && !numDic[keyPre + 3].ContainsKey(huNum)
                 && !numDic[keyPre + 4].ContainsKey(huNum))
             {
-                numDic[keyPre + targetHunNum].Add(huNum, huNum + "=" + hunToBeStr);
-            }
-            else if (targetHunNum == 4
-            && numDic[keyPre + 4].ContainsKey(huNum) && hunToBeStr != "")
-            {
-                string str = numDic[keyPre + targetHunNum][huNum] + ":" + hunToBeStr;
-                numDic[keyPre + targetHunNum][huNum] = str;
+                numDic[keyPre + targetHunNum].Add(huNum, true);
+                sbDic[keyPre + targetHunNum].Append(huNum + "\r\n");
             }
             else if (targetHunNum == 5
                 && !numDic[keyPre + 0].ContainsKey(huNum)
@@ -163,13 +141,8 @@ namespace MahjongGenertorTool
                 && !numDic[keyPre + 3].ContainsKey(huNum)
                 && !numDic[keyPre + 5].ContainsKey(huNum))
             {
-                numDic[keyPre + targetHunNum].Add(huNum, huNum + "=" + hunToBeStr);
-            }
-            else if (targetHunNum == 5
-             && numDic[keyPre + 5].ContainsKey(huNum) && hunToBeStr != "")
-            {
-                string str = numDic[keyPre + targetHunNum][huNum] + ":" + hunToBeStr;
-                numDic[keyPre + targetHunNum][huNum] = str;
+                numDic[keyPre + targetHunNum].Add(huNum, true);
+                sbDic[keyPre + targetHunNum].Append(huNum + "\r\n");
             }
             else if (targetHunNum == 6
                 && !numDic[keyPre + 0].ContainsKey(huNum)
@@ -179,13 +152,8 @@ namespace MahjongGenertorTool
                 && !numDic[keyPre + 5].ContainsKey(huNum)
                 && !numDic[keyPre + 6].ContainsKey(huNum))
             {
-                numDic[keyPre + targetHunNum].Add(huNum, huNum + "=" + hunToBeStr);
-            }
-            else if (targetHunNum == 6
-         && numDic[keyPre + 6].ContainsKey(huNum) && hunToBeStr != "")
-            {
-                string str = numDic[keyPre + targetHunNum][huNum] + ":" + hunToBeStr;
-                numDic[keyPre + targetHunNum][huNum] = str;
+                numDic[keyPre + targetHunNum].Add(huNum, true);
+                sbDic[keyPre + targetHunNum].Append(huNum + "\r\n");
             }
             else if (targetHunNum == 7
                 && !numDic[keyPre + 0].ContainsKey(huNum)
@@ -196,14 +164,8 @@ namespace MahjongGenertorTool
                 && !numDic[keyPre + 6].ContainsKey(huNum)
                 && !numDic[keyPre + 7].ContainsKey(huNum))
             {
-                numDic[keyPre + targetHunNum].Add(huNum, huNum + "=" + hunToBeStr);
-                sbDic[keyPre + targetHunNum].Append(huNum + "=" + hunToBeStr + "\r\n");
-            }
-            else if (targetHunNum == 7
-       && numDic[keyPre + 7].ContainsKey(huNum) && hunToBeStr != "")
-            {
-                string str = numDic[keyPre + targetHunNum][huNum] + ":" + hunToBeStr;
-                numDic[keyPre + targetHunNum][huNum] = str;
+                numDic[keyPre + targetHunNum].Add(huNum, true);
+                sbDic[keyPre + targetHunNum].Append(huNum + "\r\n");
             }
             else if (targetHunNum == 8
                 && !numDic[keyPre + 0].ContainsKey(huNum)
@@ -215,13 +177,8 @@ namespace MahjongGenertorTool
                 && !numDic[keyPre + 7].ContainsKey(huNum)
                 && !numDic[keyPre + 8].ContainsKey(huNum))
             {
-                numDic[keyPre + targetHunNum].Add(huNum, huNum + "=" + hunToBeStr);
-            }
-            else if (targetHunNum == 8
-       && numDic[keyPre + 8].ContainsKey(huNum) && hunToBeStr != "")
-            {
-                string str = numDic[keyPre + targetHunNum][huNum] + ":" + hunToBeStr;
-                numDic[keyPre + targetHunNum][huNum] = str;
+                numDic[keyPre + targetHunNum].Add(huNum, true);
+                sbDic[keyPre + targetHunNum].Append(huNum + "\r\n");
             }
         }
 
@@ -593,32 +550,6 @@ namespace MahjongGenertorTool
                     copyHunToBe = new List<int>(hunToBe);
                     copyHunToBe.Add(i);
                     getCharHuCardsList(copyHuList, copyCharCards, copyCurrentN, targetN, copyHunNum, targetHunNum, isEye, copyHunToBe);
-                }
-            }
-        }
-
-        public void generateString()
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                foreach (KeyValuePair<int, string> kv in orderCombineNumDic["order_combine_" + i]) 
-                {
-                    orderCombineSbDic["order_combine_" + i].Append(kv.Value + "\r\n");
-                }
-
-                foreach (KeyValuePair<int, string> kv in charCombineNumDic["char_combine_" + i])
-                {
-                    charCombineSbDic["char_combine_" + i].Append(kv.Value + "\r\n");
-                }
-
-                foreach (KeyValuePair<int, string> kv in orderCombineWithEyeNumDic["order_combine_eye_" + i])
-                {
-                    orderCombineSbWithEyeDic["order_combine_eye_" + i].Append(kv.Value + "\r\n");
-                }
-
-                foreach (KeyValuePair<int, string> kv in charCombineWithEyeNumDic["char_combine_eye_" + i])
-                {
-                    charCombineSbWithEyeDic["char_combine_eye_" + i].Append(kv.Value + "\r\n");
                 }
             }
         }

@@ -4,3 +4,9 @@ D:\C#_workspace\MahjongGenertorTool\MahjongGenertorTool\bin\Debug\MahjongGenerto
 D:\C#_workspace\MahjongGenertorTool\MahjongGenertorTool\bin\Debug\MahjongGenertorTool.pdb
 D:\C#_workspace\MahjongGenertorTool\MahjongGenertorTool\obj\Debug\MahjongGenertorTool.exe
 D:\C#_workspace\MahjongGenertorTool\MahjongGenertorTool\obj\Debug\MahjongGenertorTool.pdb
+D:\majhongGenerator\MahjongGenertorTool\MahjongGenertorTool\bin\Debug\MahjongGenertorTool.exe.config
+D:\majhongGenerator\MahjongGenertorTool\MahjongGenertorTool\obj\Debug\MahjongGenertorTool.exe
+D:\majhongGenerator\MahjongGenertorTool\MahjongGenertorTool\obj\Debug\MahjongGenertorTool.pdb
+D:\majhongGenerator\MahjongGenertorTool\MahjongGenertorTool\bin\Debug\MahjongGenertorTool.exe
+D:\majhongGenerator\MahjongGenertorTool\MahjongGenertorTool\bin\Debug\MahjongGenertorTool.pdb
+D:\majhongGenerator\MahjongGenertorTool\MahjongGenertorTool\obj\Debug\MahjongGenertorTool.csprojResolveAssemblyReference.cache

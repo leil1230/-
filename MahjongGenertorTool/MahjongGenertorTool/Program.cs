@@ -12,7 +12,6 @@ namespace MahjongGenertorTool
         {
             PaiXingFactory factory = new PaiXingFactory();
             factory.initAllCombineStr();
-            factory.generateString();
             factory.writeAllCombineListToFile();
         }
     }
